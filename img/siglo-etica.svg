@@ -1,0 +1,24 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t6 d6">
+  <title id="t6">Reloj de arena junto a un engranaje</title>
+  <desc id="d6">Transición simbólica entre la técnica y el tiempo de la reflexión ética</desc>
+  <rect width="400" height="300" fill="#0c1120"/>
+  <g transform="translate(150,150)" fill="none" stroke="#4fe0d6" stroke-width="3">
+    <path d="M-35 -60 H35 L5 0 L35 60 H-35 L-5 0 Z"/>
+  </g>
+  <path d="M120 92 L180 92 L152 148 Z" fill="#ffb454" opacity="0.85"/>
+  <path d="M124 208 L176 208 L150 154 Z" fill="#ffb454" opacity="0.5"/>
+  <g transform="translate(270,150)" fill="none" stroke="#a78bfa" stroke-width="3">
+    <circle r="42"/>
+    <circle r="14" fill="#131b30"/>
+    <g stroke-width="7">
+      <line x1="0" y1="-52" x2="0" y2="-42"/>
+      <line x1="0" y1="52" x2="0" y2="42"/>
+      <line x1="-52" y1="0" x2="-42" y2="0"/>
+      <line x1="52" y1="0" x2="42" y2="0"/>
+      <line x1="-37" y1="-37" x2="-30" y2="-30"/>
+      <line x1="37" y1="37" x2="30" y2="30"/>
+      <line x1="-37" y1="37" x2="-30" y2="30"/>
+      <line x1="37" y1="-37" x2="30" y2="-30"/>
+    </g>
+  </g>
+</svg>

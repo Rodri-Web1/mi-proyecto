@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t1 d1">
+  <title id="t1">Átomo estilizado</title>
+  <desc id="d1">Núcleo central con tres órbitas elípticas de electrones</desc>
+  <rect width="400" height="300" fill="#0c1120"/>
+  <g transform="translate(200,150)" fill="none" stroke="#4fe0d6" stroke-width="2.5">
+    <ellipse rx="120" ry="46"/>
+    <ellipse rx="120" ry="46" transform="rotate(60)"/>
+    <ellipse rx="120" ry="46" transform="rotate(120)"/>
+  </g>
+  <circle cx="200" cy="150" r="16" fill="#ffb454"/>
+  <circle cx="320" cy="150" r="7" fill="#9df3ec"/>
+  <circle cx="140" cy="63" r="7" fill="#a78bfa"/>
+  <circle cx="260" cy="223" r="7" fill="#4fe0d6"/>
+</svg>

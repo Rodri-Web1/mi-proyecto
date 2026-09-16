@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t3 d3">
+  <title id="t3">Caja cerrada del experimento mental</title>
+  <desc id="d3">Caja sellada con un signo de interrogación y la silueta de un gato apenas visible</desc>
+  <rect width="400" height="300" fill="#0c1120"/>
+  <rect x="110" y="90" width="180" height="140" rx="6" fill="#131b30" stroke="#4fe0d6" stroke-width="3"/>
+  <line x1="110" y1="140" x2="290" y2="140" stroke="#4fe0d6" stroke-width="2" opacity="0.5"/>
+  <path d="M170 190 q10 -34 30 0 q10 -30 30 0" fill="none" stroke="#a78bfa" stroke-width="4" opacity="0.55"/>
+  <circle cx="185" cy="180" r="3" fill="#a78bfa" opacity="0.55"/>
+  <circle cx="215" cy="180" r="3" fill="#a78bfa" opacity="0.55"/>
+  <text x="200" y="120" font-family="Georgia, serif" font-size="34" fill="#ffb454" text-anchor="middle">?</text>
+</svg>

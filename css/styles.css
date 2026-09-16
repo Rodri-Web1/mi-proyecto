@@ -1,0 +1,611 @@
+/* =========================================================
+   EL ÁTOMO HA DEJADO DE SER UNA FRONTERA
+   Hoja de estilos — maquetación fluida tradicional.
+
+   REGLAS DE ESTE PROYECTO (ver guia-explicativa.html):
+   - Prohibido display: flex y display: grid.
+   - Prohibido @media (ninguna Media Query en todo el archivo).
+   - Prohibido JavaScript.
+   - Prohibido frameworks o librerías externas de CSS.
+   La adaptabilidad se logra SOLO con: anchos en %, 
+   display: inline-block, float + clearfix y max-width: 100%
+   en elementos multimedia.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. TIPOGRAFÍA (familia sans-serif, legible para todo público)
+   Si vas a usar el sitio sin conexión a internet, descarga los
+   archivos .woff2 y colócalos en la carpeta "fuentes/"; luego
+   descomenta el bloque @font-face de abajo.
+   --------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+/*
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fuentes/WorkSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+*/
+
+/* ---------------------------------------------------------
+   2. VARIABLES DE COLOR (paleta "laboratorio cuántico")
+   Fondo casi negro azulado, como una sala de ultravacío, con
+   acentos en cian eléctrico, violeta y ámbar para jerarquía
+   y contraste accesible sobre fondo oscuro.
+   --------------------------------------------------------- */
+:root {
+  --tinta-950: #070a14;
+  --tinta-900: #0c1120;
+  --tinta-800: #131b30;
+  --tinta-700: #1c2740;
+
+  --cian: #4fe0d6;
+  --cian-suave: #9df3ec;
+  --violeta: #a78bfa;
+  --ambar: #ffb454;
+
+  --texto-claro: #f2f4fb;
+  --texto-tenue: #aab2cf;
+  --borde: rgba(242, 244, 251, 0.12);
+
+  --fuente-base: "Work Sans", "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------
+   3. RESET BÁSICO
+   --------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--tinta-900);
+  color: var(--texto-claro);
+  font-family: var(--fuente-base);
+  font-size: 100%; /* 16px, unidad relativa: respeta la config. del navegador */
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* max-width: 100% en todo elemento multimedia: la clave de la
+   fluidez sin Media Queries para imágenes, iframes y video. */
+img,
+iframe,
+video {
+  max-width: 100%;
+  border: 0;
+}
+
+img {
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--cian);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+a:focus,
+button:focus {
+  outline: 3px solid var(--ambar);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   4. ESCALA TIPOGRÁFICA (jerarquía clara, con unidades "em"
+   relativas al tamaño base, para que escale con fluidez)
+   --------------------------------------------------------- */
+h1, h2, h3 {
+  font-family: var(--fuente-base);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 0.6em 0;
+  color: var(--texto-claro);
+}
+
+h1 { font-size: 2.4em; }
+h2 { font-size: 1.9em; }
+h3 { font-size: 1.2em; }
+
+p {
+  margin: 0 0 1em 0;
+  max-width: 68ch;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+code {
+  font-family: "Courier New", monospace;
+  background: var(--tinta-800);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-size: 0.92em;
+  color: var(--ambar);
+}
+
+/* Texto solo para lectores de pantalla (accesibilidad) */
+.sr-solo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   5. UTILIDAD CLEARFIX
+   Cualquier contenedor con hijos "float" necesita esta clase
+   para no perder su altura (su "clear" nativo colapsaría).
+   --------------------------------------------------------- */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ---------------------------------------------------------
+   6. CONTENEDOR FLUIDO
+   Ancho porcentual con un máximo cómodo de lectura; nunca un
+   ancho fijo, para escalar de forma continua.
+   --------------------------------------------------------- */
+.contenedor {
+  width: 92%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.seccion {
+  padding: 4.5em 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.seccion--alterna {
+  background-color: var(--tinta-950);
+}
+
+.seccion__antetitulo {
+  color: var(--cian);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  margin-bottom: 0.6em;
+}
+
+.seccion__intro {
+  max-width: 72ch;
+  color: var(--texto-tenue);
+  font-size: 1.05em;
+}
+
+/* ---------------------------------------------------------
+   7. CABECERA Y NAVEGACIÓN
+   El menú NO usa float ni flex: usa "inline-block" en cada
+   <li>, así los enlaces se comportan como palabras dentro de
+   una línea de texto y se van a la línea siguiente solos
+   cuando falta espacio, sin necesidad de Media Queries.
+   --------------------------------------------------------- */
+.cabecera {
+  background-color: rgba(7, 10, 20, 0.94);
+  border-bottom: 1px solid var(--borde);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.9em 0;
+}
+
+.cabecera__interior {
+  /* clearfix ya aplicado vía clase .clearfix en el HTML */
+}
+
+.cabecera__marca {
+  float: left;
+  margin: 0.3em 0;
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--texto-claro);
+}
+
+.marca__icono {
+  color: var(--cian);
+}
+
+.navegacion {
+  float: right;
+  max-width: 74%;
+  text-align: right;
+}
+
+.navegacion__lista {
+  /* sin float: los <li> son inline-block y fluyen solos */
+}
+
+.navegacion__lista li {
+  display: inline-block;
+  margin-left: 1.1em;
+  margin-bottom: 0.3em;
+}
+
+.navegacion__lista a {
+  color: var(--texto-tenue);
+  font-size: 0.88em;
+  font-weight: 500;
+}
+
+.navegacion__lista a:hover,
+.navegacion__lista a:focus {
+  color: var(--ambar);
+  text-decoration: none;
+  border-bottom: 2px solid var(--ambar);
+}
+
+/* ---------------------------------------------------------
+   8. HERO (INICIO)
+   --------------------------------------------------------- */
+.hero {
+  padding: 6em 0 5em;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(167, 139, 250, 0.16), transparent 45%),
+    radial-gradient(circle at 88% 4%, rgba(79, 224, 214, 0.14), transparent 40%),
+    linear-gradient(180deg, var(--tinta-900), var(--tinta-950));
+}
+
+.hero__antetitulo {
+  color: var(--cian);
+  font-weight: 600;
+  margin-bottom: 0.6em;
+}
+
+.hero h1 {
+  max-width: 20ch;
+  margin-bottom: 0.5em;
+}
+
+.hero__texto {
+  color: var(--texto-tenue);
+  font-size: 1.06em;
+}
+
+.boton {
+  display: inline-block;
+  margin-top: 0.6em;
+  padding: 0.8em 1.7em;
+  background-color: var(--cian);
+  color: var(--tinta-950);
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.boton:hover,
+.boton:focus {
+  background-color: var(--cian-suave);
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------
+   9. TARJETAS
+   Maquetación con "float" + porcentajes: 4 columnas en
+   pantallas anchas. Como no hay Media Queries, se fija un
+   "min-width" para que no se aplasten en exceso en pantallas
+   muy angostas; en ese caso el contenedor permite scroll
+   horizontal suave en vez de romper el diseño.
+   --------------------------------------------------------- */
+.tarjetas {
+  margin-top: 2.4em;
+}
+
+.tarjeta {
+  float: left;
+  width: 23.5%;
+  min-width: 220px;
+  margin-right: 2%;
+  margin-bottom: 1.7em;
+  background-color: var(--tinta-800);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--cian);
+  border-radius: 6px;
+  padding: 1.6em 1.4em;
+}
+
+.tarjeta:nth-child(4n) {
+  margin-right: 0;
+}
+
+.tarjetas--tres .tarjeta {
+  width: 31.33%;
+}
+
+.tarjetas--tres .tarjeta:nth-child(4n) {
+  margin-right: 2%;
+}
+
+.tarjetas--tres .tarjeta:nth-child(3n) {
+  margin-right: 0;
+}
+
+.tarjeta h3 {
+  color: var(--cian-suave);
+}
+
+.tarjeta p {
+  color: var(--texto-tenue);
+  font-size: 0.96em;
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------
+   10. TABLA (contrato social)
+   Envuelta en un contenedor con "overflow-x: auto" para que,
+   en pantallas muy angostas, se pueda desplazar sin romper
+   el layout — sin necesidad de Media Queries.
+   --------------------------------------------------------- */
+.tabla-envoltorio {
+  margin-top: 2.2em;
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+}
+
+.tabla-comparativa {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--tinta-800);
+  min-width: 560px;
+}
+
+.tabla-comparativa caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.9em 1.1em;
+  font-style: italic;
+  color: var(--texto-tenue);
+  background-color: var(--tinta-950);
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla-comparativa th,
+.tabla-comparativa td {
+  padding: 0.9em 1.1em;
+  border-bottom: 1px solid var(--borde);
+  text-align: left;
+  font-size: 0.95em;
+  vertical-align: top;
+}
+
+.tabla-comparativa thead th {
+  background-color: var(--tinta-700);
+  color: var(--cian-suave);
+  font-weight: 700;
+}
+
+.tabla-comparativa tbody th {
+  background-color: var(--tinta-950);
+  color: var(--ambar);
+  font-weight: 700;
+  width: 14%;
+}
+
+.tabla-comparativa tbody tr:last-child th,
+.tabla-comparativa tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.cita-textual {
+  margin-top: 1.6em;
+  padding-left: 1.1em;
+  border-left: 3px solid var(--violeta);
+  font-style: italic;
+  color: var(--texto-tenue);
+}
+
+/* ---------------------------------------------------------
+   11. GALERÍA DE IMÁGENES
+   Aquí se usa "display: inline-block" en vez de "float": las
+   figuras se comportan como palabras dentro del contenedor y
+   se reacomodan solas, envolviendo de forma continua según
+   el ancho disponible. "text-align: justify" en el contenedor
+   reparte el espacio sobrante entre elementos de la última
+   fila incompleta.
+   --------------------------------------------------------- */
+.galeria {
+  margin-top: 2.4em;
+  text-align: justify;
+}
+
+.galeria::after {
+  /* fuerza a que la "justificación" no estire la última línea */
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+.galeria__item {
+  display: inline-block;
+  vertical-align: top;
+  width: 31%;
+  min-width: 230px;
+  margin: 0 0 1.8em 0;
+  background-color: var(--tinta-800);
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.galeria__item img {
+  width: 100%;
+  border-bottom: 1px solid var(--borde);
+}
+
+.galeria__item figcaption {
+  padding: 0.85em 1em;
+  font-size: 0.9em;
+  color: var(--texto-tenue);
+}
+
+/* ---------------------------------------------------------
+   12. VIDEO / IFRAME
+   El envoltorio con "padding-bottom" en porcentaje mantiene
+   siempre la proporción 16:9 del video sin usar Media
+   Queries: es una técnica puramente fluida (el porcentaje se
+   calcula sobre el ancho del contenedor).
+   --------------------------------------------------------- */
+.video-envoltorio {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 = 9 / 16 * 100 */
+  height: 0;
+  margin-top: 2em;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background-color: #000;
+}
+
+.video-reproductor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Modificador para la etiqueta nativa <video>: a diferencia de un
+   <iframe> de YouTube, el propio archivo de video ya conoce su
+   proporción real, así que no conviene forzarlo con el truco del
+   "padding-bottom". Aquí basta con max-width: 100% y height: auto
+   (reglas ya generales para <img>, <iframe>, <video> del punto 3),
+   dejando que el navegador respete su proporción original. */
+.video-envoltorio--nativo {
+  padding-bottom: 0;
+  height: auto;
+}
+
+.video-envoltorio--nativo .video-reproductor {
+  position: static;
+  width: 100%;
+  height: auto;
+}
+
+.video-nota {
+  margin-top: 1.4em;
+  padding: 1em 1.2em;
+  background-color: var(--tinta-800);
+  border-left: 3px solid var(--cian);
+  border-radius: 4px;
+  color: var(--texto-tenue);
+  font-size: 0.94em;
+}
+
+/* ---------------------------------------------------------
+   13. CITA / REFLEXIÓN FINAL
+   --------------------------------------------------------- */
+.seccion--cita {
+  background-image: linear-gradient(180deg, var(--tinta-950), #05070f);
+  text-align: center;
+  padding: 5.5em 0;
+}
+
+.cita {
+  margin: 0 auto;
+  max-width: 62ch;
+  border: 0;
+}
+
+.cita p {
+  font-size: 1.5em;
+  font-style: italic;
+  color: var(--texto-claro);
+  margin: 0 auto 0.7em;
+}
+
+.cita__autor {
+  color: var(--ambar);
+  font-size: 0.92em;
+}
+
+/* ---------------------------------------------------------
+   14. GLOSARIO DE ETIQUETAS (dl / dt / dd con float)
+   --------------------------------------------------------- */
+.glosario {
+  margin-top: 2.2em;
+}
+
+.glosario__item {
+  clear: left;
+  padding: 1em 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+.glosario__item::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.glosario dt {
+  float: left;
+  width: 30%;
+  min-width: 200px;
+  font-family: "Courier New", monospace;
+  color: var(--ambar);
+  font-weight: 700;
+  padding-right: 1em;
+  font-size: 0.88em;
+}
+
+.glosario dd {
+  float: left;
+  width: 68%;
+  margin: 0;
+  color: var(--texto-tenue);
+}
+
+/* ---------------------------------------------------------
+   15. PIE DE PÁGINA
+   --------------------------------------------------------- */
+.pie {
+  background-color: var(--tinta-950);
+  border-top: 1px solid var(--borde);
+  padding: 2.6em 0;
+}
+
+.pie p {
+  color: var(--texto-tenue);
+  font-size: 0.9em;
+  max-width: 60ch;
+}
+
+.pie__estructura {
+  margin-bottom: 0.3em;
+}
+
+.pie__volver {
+  float: right;
+  margin-top: -3em;
+  color: var(--cian);
+  font-size: 0.9em;
+}

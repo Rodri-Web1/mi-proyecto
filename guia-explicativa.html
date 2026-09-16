@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía Explicativa | El Átomo ha Dejado de Ser una Frontera</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera__interior clearfix">
+      <p class="cabecera__marca">
+        <span class="marca__icono" aria-hidden="true">⚛</span>
+        Guía Explicativa del Proyecto
+      </p>
+      <nav class="navegacion" aria-label="Navegación de la guía">
+        <ul class="navegacion__lista">
+          <li><a href="index.html">← Volver al sitio</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion hero" aria-labelledby="guia-titulo">
+      <div class="contenedor">
+        <p class="hero__antetitulo">Entregable 2 del desafío</p>
+        <h1 id="guia-titulo">Guía Explicativa</h1>
+        <p class="hero__texto">
+          Este documento justifica las etiquetas semánticas elegidas para
+          <code>index.html</code> y describe, paso a paso, la estrategia CSS aplicada para
+          lograr fluidez visual sin usar Flexbox, CSS Grid ni Media Queries, tal como exige
+          la actividad "Desafío Práctico: Programación Web I".
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alterna" aria-labelledby="etiquetas-just-titulo">
+      <div class="contenedor">
+        <h2 id="etiquetas-just-titulo">1. Justificación de las etiquetas semánticas</h2>
+        <p class="seccion__intro">
+          Se evitó el uso de <code>&lt;div&gt;</code> genéricos siempre que existió una
+          etiqueta con significado propio para ese bloque de contenido.
+        </p>
+
+        <dl class="glosario">
+          <div class="glosario__item">
+            <dt>&lt;header&gt;</dt>
+            <dd>
+              Se eligió para el encabezado porque agrupa la identidad del sitio (el nombre)
+              y la navegación principal: es exactamente lo que HTML5 define como el
+              propósito de esta etiqueta, y evita usar un <code>&lt;div id="header"&gt;</code>
+              sin significado.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;nav&gt;</dt>
+            <dd>
+              El menú de anclas que enlaza a cada sección es, por definición, un bloque de
+              navegación. Usar <code>&lt;nav&gt;</code> permite además que lectores de
+              pantalla lo anuncien como tal y lo salten fácilmente.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;main&gt;</dt>
+            <dd>
+              Envuelve todo el contenido único de la página (sin repetir cabecera ni pie).
+              Solo puede existir un <code>&lt;main&gt;</code> por documento, lo cual ayuda a
+              la accesibilidad y al SEO.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;section&gt;</dt>
+            <dd>
+              Cada eje temático del podcast (Computación Cuántica, Constanza, Nuevo Contrato
+              Social...) es un bloque temático propio con su encabezado <code>&lt;h2&gt;</code>,
+              por lo que corresponde usar <code>&lt;section&gt;</code> en lugar de
+              <code>&lt;div&gt;</code>.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;article&gt;</dt>
+            <dd>
+              Cada tarjeta dentro de una sección (por ejemplo, "La Regla de los Cuatro
+              Nueves") tiene sentido leída de forma aislada, como una pequeña nota
+              autocontenida: por eso se usa <code>&lt;article&gt;</code> en vez de
+              <code>&lt;div class="tarjeta"&gt;</code> sin más.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;figure&gt; y &lt;figcaption&gt;</dt>
+            <dd>
+              La galería asocia cada imagen con su descripción. <code>&lt;figure&gt;</code>
+              declara ese vínculo explícitamente y <code>&lt;figcaption&gt;</code> marca el
+              texto como el pie de esa imagen concreta.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;table&gt;, &lt;thead&gt;, &lt;tbody&gt;, &lt;th&gt;</dt>
+            <dd>
+              El reparto del "nuevo contrato social" en tres tercios es, literalmente, una
+              tabla de datos con relación fila/columna, no una lista decorativa: se usó
+              <code>&lt;table&gt;</code> con <code>scope="col"</code> y
+              <code>scope="row"</code> para que los lectores de pantalla asocien cada celda
+              con su encabezado correcto.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;video&gt; y &lt;source&gt;</dt>
+            <dd>
+              Se usaron para incrustar el video propio del proyecto, tal como permite la
+              Fase 2 de la actividad ("&lt;iframe&gt; de YouTube o la etiqueta nativa
+              &lt;video&gt;"). <code>source</code> declara el archivo y su tipo MIME, y el
+              texto dentro de la etiqueta sirve como respaldo accesible si el navegador no
+              admite video en HTML5. El código con <code>&lt;iframe&gt;</code> de YouTube
+              queda documentado, comentado, como alternativa en el propio
+              <code>index.html</code>.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;blockquote&gt; y &lt;footer&gt;</dt>
+            <dd>
+              La cita textual de cierre usa <code>&lt;blockquote&gt;</code> porque es una
+              cita literal de Latorre, con un <code>&lt;footer&gt;</code> interno para
+              atribuir la autoría, distinto del <code>&lt;footer&gt;</code> general de la
+              página (que es el pie del sitio completo).
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>&lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;</dt>
+            <dd>
+              El glosario de etiquetas es, conceptualmente, una lista de términos y sus
+              definiciones: el caso de uso exacto para el que existe
+              <code>&lt;dl&gt;</code>.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="seccion" aria-labelledby="css-titulo">
+      <div class="contenedor">
+        <h2 id="css-titulo">2. Estrategia CSS para la fluidez sin Media Queries</h2>
+        <p class="seccion__intro">
+          La restricción más exigente de la actividad es lograr adaptabilidad
+          <strong>sin una sola regla <code>@media</code></strong>. Se resolvió combinando
+          cuatro técnicas de maquetación fluida clásica:
+        </p>
+
+        <div class="tarjetas tarjetas--tres clearfix">
+          <article class="tarjeta">
+            <h3>2.1 Anchos en porcentaje</h3>
+            <p>
+              Todo contenedor de layout (<code>.contenedor</code>, <code>.tarjeta</code>,
+              <code>.galeria__item</code>) usa <code>width</code> en <code>%</code>, nunca en
+              píxeles fijos. Así, cuando la ventana cambia de tamaño, cada elemento recalcula
+              su ancho de forma continua y proporcional, sin "saltos" en puntos de quiebre
+              fijos.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>2.2 Float + clearfix</h3>
+            <p>
+              Las tarjetas de contenido y el glosario usan <code>float: left</code> para
+              formar columnas. Como los elementos flotantes sacan a su contenedor del flujo
+              normal (colapsando su altura), cada contenedor de columnas lleva la clase
+              <code>.clearfix</code>, que aplica
+              <code>content: ""; display: table; clear: both;</code> en un pseudo-elemento
+              <code>::after</code> para restaurar la altura correcta.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>2.3 display: inline-block</h3>
+            <p>
+              La navegación y la galería de imágenes usan <code>inline-block</code> en vez de
+              <code>float</code>: los elementos se comportan como palabras dentro de una
+              línea de texto y se van solos a la línea siguiente cuando falta espacio
+              horizontal, sin necesidad de detectar el ancho de pantalla con una Media Query.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>2.4 max-width: 100% en multimedia</h3>
+            <p>
+              Toda imagen, iframe y video tiene <code>max-width: 100%</code> y
+              <code>height: auto</code>, para que nunca desborden su contenedor, sin importar
+              cuánto se achique la pantalla.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>2.5 Proporción del video sin @media</h3>
+            <p>
+              El video propio usado en el sitio ya conoce su proporción real, así que le
+              basta con <code>max-width: 100%</code> y <code>height: auto</code> para
+              adaptarse. La clase modificadora <code>.video-envoltorio--nativo</code>
+              desactiva el truco del punto siguiente para este caso. Ese truco
+              ("padding-bottom": <code>56.25% = 9 ÷ 16</code>, con el reproductor en
+              <code>position: absolute</code> llenando el contenedor) se conserva en el CSS
+              para la alternativa con <code>&lt;iframe&gt;</code> de YouTube, documentada
+              como comentario en <code>index.html</code>, ya que un iframe no tiene una
+              proporción propia y necesita que se la impongamos.
+            </p>
+          </article>
+
+          <article class="tarjeta">
+            <h3>2.6 min-width como red de seguridad</h3>
+            <p>
+              En pantallas extremadamente angostas, un ancho puramente porcentual puede volver
+              ilegible una tarjeta o una imagen. Se añadió un <code>min-width</code> discreto
+              (por ejemplo, <code>220px</code>) para evitar ese extremo; si el espacio es
+              insuficiente, el navegador simplemente envuelve el elemento a la siguiente línea
+              (gracias a <code>float</code> o <code>inline-block</code>), en vez de romper el
+              diseño.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alterna" aria-labelledby="publicar-titulo">
+      <div class="contenedor">
+        <h2 id="publicar-titulo">3. Cómo publicar el sitio (instrucciones sencillas)</h2>
+        <p class="seccion__intro">
+          Pasos básicos para completar los dos entregables pendientes de la actividad: el
+          repositorio Git y el sitio publicado en línea.
+        </p>
+
+        <dl class="glosario">
+          <div class="glosario__item">
+            <dt>Paso 1</dt>
+            <dd>
+              Dentro de la carpeta <code>IA y la comp acuantica/</code>, abre una terminal y
+              ejecuta: <code>git init</code>, luego <code>git add .</code> y
+              <code>git commit -m "Primer commit: estructura base del sitio"</code>.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>Paso 2</dt>
+            <dd>
+              Crea un repositorio nuevo y vacío en GitHub, copia la URL que te da (termina en
+              <code>.git</code>) y ejecuta <code>git remote add origin URL</code>.
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>Paso 3</dt>
+            <dd>
+              Sube los archivos con <code>git push -u origin main</code> (si tu rama se llama
+              <code>master</code>, usa esa palabra en su lugar).
+            </dd>
+          </div>
+          <div class="glosario__item">
+            <dt>Paso 4</dt>
+            <dd>
+              En GitHub, entra a <em>Settings → Pages</em>, elige la rama principal como
+              fuente y guarda: GitHub te dará un enlace público donde el sitio queda
+              desplegado.
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__interior clearfix">
+      <p>Guía explicativa del proyecto "El Átomo ha Dejado de Ser una Frontera".</p>
+      <a class="pie__volver" href="index.html">Volver al sitio ↑</a>
+    </div>
+  </footer>
+
+</body>
+</html>

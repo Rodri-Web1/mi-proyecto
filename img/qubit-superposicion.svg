@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t2 d2">
+  <title id="t2">Qubit en superposición</title>
+  <desc id="d2">Esfera transparente con un vector de estado apuntando entre dos polos</desc>
+  <rect width="400" height="300" fill="#0c1120"/>
+  <circle cx="200" cy="150" r="85" fill="none" stroke="#a78bfa" stroke-width="2"/>
+  <ellipse cx="200" cy="150" rx="85" ry="26" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.6"/>
+  <line x1="200" y1="65" x2="200" y2="235" stroke="#4fe0d6" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="200" cy="65" r="4" fill="#4fe0d6"/>
+  <circle cx="200" cy="235" r="4" fill="#4fe0d6"/>
+  <text x="200" y="52" font-family="Arial, sans-serif" font-size="13" fill="#9df3ec" text-anchor="middle">|0⟩</text>
+  <text x="200" y="256" font-family="Arial, sans-serif" font-size="13" fill="#9df3ec" text-anchor="middle">|1⟩</text>
+  <line x1="200" y1="150" x2="255" y2="98" stroke="#ffb454" stroke-width="3"/>
+  <circle cx="255" cy="98" r="6" fill="#ffb454"/>
+</svg>
